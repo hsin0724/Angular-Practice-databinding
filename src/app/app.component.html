@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+
+    <br>
+    <!-- 雙向繫結 & 事件綁定 -->
+    <input type="text" class="form-control"
+    [(ngModel)]='username' (input)="getInputValue($event)">
+
+    <!-- 屬性綁定 & 事件綁定 -->
+    <button class="btn btn-primary"
+      [disabled]="btnDisabled"
+      (click)="clearUseName()">Clear
+    </button>
+
+    <!-- 屬性綁定 & 事件綁定 -->
+    <button class="btn btn-primary"
+      [disabled]="btnDisabled2"
+      (click)="creatUseName()">Answer
+    </button>
+
+    <!-- ngIf & 插值綁定-->
+    <p *ngIf="creatName, else question">
+       my name is {{ username }}
+    </p>
+    <ng-template #question>
+      <p>What is your name?</p>
+    </ng-template>
+
+    <!-- ngStyle & 插值綁定 -->
+    <p [ngStyle]="textColor">my name is
+      <span [style.color]="textColor2">{{ username }}</span>
+    </p>
+
+    <!-- ngStyle & 插值綁定 -->
+    <p [ngStyle]="{color:'blue','background-color':'yellow'}">my name is
+      <span [style.font-size.px]="30">{{ username }}</span>
+    </p>
+
+    <!-- ngStyle & 插值綁定 -->
+    <p [ngStyle]="{'background-color': getColor()}">
+      my name is {{ name }}
+    </p>
+
+    <!-- ngClass & 雙向繫結 -->
+    <input type="text" class="form-control" [(ngModel)]="typetext"><br>
+    <p [ngClass]="{'color': typetext == '123'}">輸入123我會變紅色</p>
+
+    <!-- ngClass & 雙向繫結 -->
+    <input type="text" class="form-control" [(ngModel)]="typetext2"><br>
+    <p [class.color2]= "typetext2 == '123'">輸入123我會變黃色</p>
+
+    <!-- ngFor & 事件綁定 -->
+    <button class="btn btn-primary"
+      (click)="creatServe()">Creat Server
+    </button>
+    <app-server *ngFor="let server of servers"></app-server>
+
+    <!-- ngFor & 屬性綁定 & 插值綁定-->
+    <ng-container *ngFor="let link of links">
+      <a [href]="'#' + link.linkName">
+        {{ link.linkName }}
+      </a>
+      &nbsp;
+    </ng-container >
+
+    </div>
+  </div>
+</div>
+
+
+
